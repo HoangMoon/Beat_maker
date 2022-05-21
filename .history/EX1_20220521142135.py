@@ -5,6 +5,8 @@ from pygame import mixer
 from pyparsing import White
 pygame.init()
 
+WIDTH = 1400
+HEIGHT = 800
 #Color
 black = (0, 0, 0)
 white = (255, 255, 255)
@@ -14,8 +16,6 @@ gold = (212, 175, 55)
 blue = (0, 255, 255)
 
 #Screen property
-WIDTH = 1400
-HEIGHT = 800
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption('Beat Maker of Moon')
 label_front = pygame.font.Font('freesansbold.ttf', 32)
@@ -79,7 +79,7 @@ def draw_grid(clicks, beat):
         active = pygame.draw.rect(screen, blue, [beat * ((WIDTH - 200) // beats) + 200, 0, ((WIDTH -200) // beats), instruments * 100], 5 ,3 )
     return boxes
 
-#Event Active
+
 run = True
 while run:
     timer.tick(fps)
@@ -117,5 +117,3 @@ while run:
     pygame.display.flip()
 pygame.quit()
 
-
-# đang đến 48:00

@@ -5,6 +5,7 @@ from pygame import mixer
 from pyparsing import White
 pygame.init()
 
+
 #Color
 black = (0, 0, 0)
 white = (255, 255, 255)
