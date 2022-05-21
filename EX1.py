@@ -1,5 +1,5 @@
-from cProfile import label
-from turtle import Screen
+
+from turtle import Screen, left
 import pygame
 from pygame import mixer
 from pyparsing import White
@@ -18,13 +18,21 @@ label_front = pygame.font.Font('freesansbold.ttf', 32)
 
 fps = 60
 timer= pygame.time.Clock()
- 
+
+def draw_grid():
+    left_box = pygame.draw.rect(screen, gray, [0, 0, 200, HEIGHT], 5)
+    bottom_box = pygame.draw.rect(screen, gray, [0, HEIGHT- 200, WIDTH, 200], 5)
+
+
+
+
 run = True
 while run:
     timer.tick(fps)
     screen.fill(black)
+    draw_grid()
 
-    
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
