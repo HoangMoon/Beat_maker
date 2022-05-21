@@ -18,10 +18,6 @@ label_front = pygame.font.Font('freesansbold.ttf', 32)
 
 fps = 60
 timer= pygame.time.Clock()
-beats = 8
-instruments =6
-
-
 # vẽ giao diện 
 def draw_grid():
     left_box = pygame.draw.rect(screen, gray, [0, 0, 200, HEIGHT - 200], 5)
@@ -29,23 +25,20 @@ def draw_grid():
     boxes = []
     colors = [gray, white, gray]
     hi_hat_text = label_front.render('Hi Hat', True, white)
-    screen.blit(hi_hat_text, (30, 30))
+    screen.blit(hi_hat_text, (35, 30))
     snare_text = label_front.render('Snare', True, white)
-    screen.blit(snare_text, (30, 130))
-    floor_text = label_front.render('Bass Drum', True, white)
-    screen.blit(floor_text, (15, 230))
+    screen.blit(snare_text, (35, 130))
+    kick_text = label_front.render('BassDrum', True, white)
+    screen.blit(kick_text, (35, 230))
     crash_text = label_front.render('Crash', True, white)
-    screen.blit(crash_text, (30, 330))
+    screen.blit(crash_text, (35, 330))
     clap_text = label_front.render('Clap', True, white)
-    screen.blit(clap_text, (30, 430))
+    screen.blit(clap_text, (35, 430))
     floor_text = label_front.render('Floor Tom', True, white)
-    screen.blit(floor_text, (30, 530))
-    for i in range(instruments):
-        pygame.draw.line(screen, gray, (0, (i * 100) + 100), (200, (i * 100) + 100), 3)
-    
-    for i in range(beats):
-        for j in range(instruments):
-            rect =pygame.draw.rect(screen, gray, [i * ((WIDTH - 200) // beats) + 200, (j *100), ((WIDTH - 200)// beats), ((HEIGHT - 200)//instruments)], 5, 5)
+    screen.blit(floor_text, (35, 530))
+    for i in range(6):
+        pygame.draw.line(screen, gray, (0, (i * 100) + 100), (200, (i * 100) + 100), 8)
+
 
 
 
