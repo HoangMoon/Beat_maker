@@ -14,7 +14,7 @@ gray = (128, 128, 128,)
 
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption('Beat Maker of Moon')
-label_front = pygame.font.Font('freesansbold.ttf', 32)
+label_front = pygame.font.Font('Robot-Bold.ttf', 32)
 
 fps = 60
 timer= pygame.time.Clock()
