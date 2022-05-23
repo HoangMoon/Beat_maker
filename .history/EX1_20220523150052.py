@@ -139,25 +139,13 @@ while run:
     screen.blit(add_text, (520, HEIGHT - 140))
     sub_text = mediun_front.render('-5', True, white)
     screen.blit(sub_text, (520, HEIGHT - 90))
-    
-    #beats suff
-    beat_rect = pygame.draw.rect(screen, gray, [300, HEIGHT - 150, 200, 100], 5, 5)
-    beat_text = mediun_front.render('Beats Per Minute', True, white)
-    screen.blit(beat_rect, (308, HEIGHT - 130))
-    beat_text2 = label_front.render(f'{bpm}', True, white)
-    screen.blit(beat_text2, (370, HEIGHT - 100))
-    beat_add_rect = pygame.draw.rect(screen, gray, [510, HEIGHT-150, 48, 48], 0, 5)
-    beat_sub_rect = pygame.draw.rect(screen, gray, [510, HEIGHT-100, 48, 48], 0, 5)
-    add_text2 = mediun_front.render('+5', True, white)
-    screen.blit(add_text2, (520, HEIGHT - 140))
-    sub_text2 = mediun_front.render('-5', True, white)
-    screen.blit(sub_text2, (520, HEIGHT - 90))
+
 
     if beat_changed:
         play_notes()
         beat_changed = False
 
-    #event effect
+#event effect
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
@@ -177,8 +165,7 @@ while run:
             elif bpm_sub_rect.collidepoint(event.pos):
                 bpm -=5
 
-
-    # event chạy beat
+# event chạy beat
     beat_length = fps * 60 // bpm
 
     if playing:
@@ -201,4 +188,3 @@ pygame.quit()
 
 
 
-# 1:15:33

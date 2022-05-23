@@ -19,8 +19,8 @@ WIDTH = 1400
 HEIGHT = 800
 screen = pygame.display.set_mode([WIDTH, HEIGHT])
 pygame.display.set_caption('Beat Maker of Moon')
-label_front = pygame.font.Font('Roboto-Bold.ttf', 32)
-mediun_front = pygame.font.Font('Roboto-Bold.ttf', 24)
+label_front = pygame.font.Font('freesansbold.ttf', 32)
+mediun_front = pygame.font.Font('freesansbold.ttf', 24)
 
 
 #Statement
@@ -78,7 +78,7 @@ def draw_grid(clicks, beat):
     snare_text = label_front.render('Snare', True, white)
     screen.blit(snare_text, (30, 130))
     floor_text = label_front.render('Bass Drum', True, white)
-    screen.blit(floor_text, (30, 230))
+    screen.blit(floor_text, (15, 230))
     crash_text = label_front.render('Crash', True, white)
     screen.blit(crash_text, (30, 330))
     clap_text = label_front.render('Clap', True, white)
@@ -128,36 +128,16 @@ while run:
     screen.blit(play_text2, (70, HEIGHT-100))
     
     #bpm stuff
-    bpm_rect = pygame.draw.rect(screen, gray, [300, HEIGHT - 150, 200, 100], 5, 5)
+    bpm_rect = pygame.draw.rect(screen, gray, [300, HEIGHT - 180, 200, 100], 5, 5)
     bpm_text = mediun_front.render('Beats Per Minute', True, white)
     screen.blit(bpm_text, (308, HEIGHT - 130))
     bpm_text2 = label_front.render(f'{bpm}', True, white)
     screen.blit(bpm_text2, (370, HEIGHT - 100))
-    bpm_add_rect = pygame.draw.rect(screen, gray, [510, HEIGHT-150, 48, 48], 0, 5)
-    bpm_sub_rect = pygame.draw.rect(screen, gray, [510, HEIGHT-100, 48, 48], 0, 5)
-    add_text = mediun_front.render('+5', True, white)
-    screen.blit(add_text, (520, HEIGHT - 140))
-    sub_text = mediun_front.render('-5', True, white)
-    screen.blit(sub_text, (520, HEIGHT - 90))
-    
-    #beats suff
-    beat_rect = pygame.draw.rect(screen, gray, [300, HEIGHT - 150, 200, 100], 5, 5)
-    beat_text = mediun_front.render('Beats Per Minute', True, white)
-    screen.blit(beat_rect, (308, HEIGHT - 130))
-    beat_text2 = label_front.render(f'{bpm}', True, white)
-    screen.blit(beat_text2, (370, HEIGHT - 100))
-    beat_add_rect = pygame.draw.rect(screen, gray, [510, HEIGHT-150, 48, 48], 0, 5)
-    beat_sub_rect = pygame.draw.rect(screen, gray, [510, HEIGHT-100, 48, 48], 0, 5)
-    add_text2 = mediun_front.render('+5', True, white)
-    screen.blit(add_text2, (520, HEIGHT - 140))
-    sub_text2 = mediun_front.render('-5', True, white)
-    screen.blit(sub_text2, (520, HEIGHT - 90))
 
     if beat_changed:
         play_notes()
         beat_changed = False
 
-    #event effect
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
@@ -172,13 +152,9 @@ while run:
                     playing = False
                 elif not playing:
                     playing = True
-            if bpm_add_rect.collidepoint(event.pos):
-                bpm += 5
-            elif bpm_sub_rect.collidepoint(event.pos):
-                bpm -=5
 
 
-    # event chạy beat
+# event chạy beat
     beat_length = fps * 60 // bpm
 
     if playing:
@@ -201,4 +177,3 @@ pygame.quit()
 
 
 
-# 1:15:33
