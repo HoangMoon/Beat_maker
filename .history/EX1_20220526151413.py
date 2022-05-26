@@ -1,5 +1,4 @@
 
-from math import fabs
 from turtle import Screen, left
 import pygame
 from pygame import MOUSEBUTTONUP, mixer
@@ -37,12 +36,7 @@ playing = True
 active_length = 0
 active_beat = 1
 beat_changed = True
-save_menu = False
-load_menu = False
-saved_beat = []
-file = open('beat_save.txt', 'r')
-for line in file:
-    saved_beat.append(line)
+
 # load in sounds
 hi_hat = mixer.Sound('sounds\hi hat.WAV')
 snare = mixer.Sound('sounds\snare.WAV')
@@ -173,10 +167,7 @@ while run:
     load_button = pygame.draw.rect(screen, gray, [900, HEIGHT - 100, 200, 48], 0, 5)
     load_text = label_front.render('Load Beat', True, white)
     screen.blit(load_text, (920, HEIGHT-90))
-    #clear Board
-    clear_button = pygame.draw.rect(screen, gray, [1150, HEIGHT - 150, 200, 100], 0, 5)
-    clear_text = label_front.render('Clear All', True, white)
-    screen.blit(clear_text, (1185, HEIGHT - 130))
+
 
     if beat_changed:
         play_notes()
@@ -187,13 +178,13 @@ while run:
         if event.type == pygame.QUIT:
             run = False
             #box of beat
-        if event.type == pygame.MOUSEBUTTONDOWN and not save_menu and not load_menu:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             for i in range(len(boxes)):
                 if boxes[i][0].collidepoint(event.pos):
                     coords = boxes[i][1]
                     clicked[coords[1]][coords[0]] *= -1
             #control play/pause
-        if event.type == pygame.MOUSEBUTTONUP  and not save_menu and not load_menu:
+        if event.type == pygame.MOUSEBUTTONUP:
             if play_pause.collidepoint(event.pos):
                 if playing:
                     playing = False
@@ -215,14 +206,6 @@ while run:
                 beats -= 1
                 for i in range(len(clicked)):
                     clicked[i].pop(-1)
-            #clear button
-            elif clear_button.collidepoint(event.pos):
-                clicked = [[-1 for _ in range(beats)] for _ in range(instruments)]
-            #save_button
-            elif save_button.collidepoint(event.pos):
-                save_button = True
-            elif load_button.collidepoint(event.pos):
-                load_button = True
             for i in range(len(instruments_rects)):
                 if instruments_rects[i].collidepoint(event.pos):
                     active_list[i] *= -1
@@ -250,5 +233,6 @@ while run:
     pygame.display.flip()
 pygame.quit()
 
-# 1:40:20
 
+
+# 1:25:33

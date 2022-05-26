@@ -221,8 +221,8 @@ while run:
             #save_button
             elif save_button.collidepoint(event.pos):
                 save_button = True
-            elif load_button.collidepoint(event.pos):
-                load_button = True
+            elif load_menu.collidepoint(event.pos):
+                load_menu = True
             for i in range(len(instruments_rects)):
                 if instruments_rects[i].collidepoint(event.pos):
                     active_list[i] *= -1
@@ -250,5 +250,5 @@ while run:
     pygame.display.flip()
 pygame.quit()
 
-# 1:40:20
+
 
