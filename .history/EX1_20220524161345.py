@@ -50,7 +50,7 @@ pygame.mixer.set_num_channels(instruments * 3)
 
 def play_notes():
     for i in range(len(clicked)):
-        if clicked[i][active_beat] == 1 and active_list[i] == 1:
+        if clicked[i][active_beat] == 1:
             if i == 0:
                 hi_hat.play()
             if i == 1:
@@ -65,17 +65,20 @@ def play_notes():
                 tom.play()
 
 
+
+
+
 # vẽ giao diện 
 def draw_grid(clicks, beat, actives):
     left_box = pygame.draw.rect(screen, gray, [0, 0, 200, HEIGHT - 200], 5)
     bottom_box = pygame.draw.rect(screen, gray, [0, HEIGHT- 200, WIDTH, 200], 5)
     boxes = []
     colors = [gray, white, gray]
-    hi_hat_text = label_front.render('Hi Hat', True, colors[actives[0]])  #colors[active[0]]) == ? (màu dc gọi từ color(white, gray ,white)số ở active[i] là để xác định các dòng ko trùng lặp;có bn dòng sẽ tăng lên bấy nhiêu)
+    hi_hat_text = label_front.render('Hi Hat', True, colors[actives[0]])
     screen.blit(hi_hat_text, (30, 30))
     snare_text = label_front.render('Snare', True, colors[actives[1]])
     screen.blit(snare_text, (30, 130))
-    floor_text = label_front.render('Bass Drum', True, colors[actives[1]])
+    floor_text = label_front.render('Bass Drum', True, colors[actives[2]])
     screen.blit(floor_text, (30, 230))
     crash_text = label_front.render('Crash', True, colors[actives[3]])
     screen.blit(crash_text, (30, 330))
@@ -223,4 +226,4 @@ pygame.quit()
 
 
 
-# 1:25:33
+# 1:15:33

@@ -30,7 +30,7 @@ beats = 8
 instruments = 6
 boxes = []
 clicked = [[-1 for _ in range(beats)] for _ in range(instruments)]
-active_list = [1 for _ in range(instruments)]
+active_list = [1 for _ in range(instruments) ]
 bpm = 240
 playing = True
 active_length = 0
@@ -50,7 +50,7 @@ pygame.mixer.set_num_channels(instruments * 3)
 
 def play_notes():
     for i in range(len(clicked)):
-        if clicked[i][active_beat] == 1 and active_list[i] == 1:
+        if clicked[i][active_beat] == 1:
             if i == 0:
                 hi_hat.play()
             if i == 1:
@@ -65,23 +65,26 @@ def play_notes():
                 tom.play()
 
 
+
+
+
 # vẽ giao diện 
-def draw_grid(clicks, beat, actives):
+def draw_grid(clicks, beat):
     left_box = pygame.draw.rect(screen, gray, [0, 0, 200, HEIGHT - 200], 5)
     bottom_box = pygame.draw.rect(screen, gray, [0, HEIGHT- 200, WIDTH, 200], 5)
     boxes = []
     colors = [gray, white, gray]
-    hi_hat_text = label_front.render('Hi Hat', True, colors[actives[0]])  #colors[active[0]]) == ? (màu dc gọi từ color(white, gray ,white)số ở active[i] là để xác định các dòng ko trùng lặp;có bn dòng sẽ tăng lên bấy nhiêu)
+    hi_hat_text = label_front.render('Hi Hat', True, white)
     screen.blit(hi_hat_text, (30, 30))
-    snare_text = label_front.render('Snare', True, colors[actives[1]])
+    snare_text = label_front.render('Snare', True, white)
     screen.blit(snare_text, (30, 130))
-    floor_text = label_front.render('Bass Drum', True, colors[actives[1]])
+    floor_text = label_front.render('Bass Drum', True, white)
     screen.blit(floor_text, (30, 230))
-    crash_text = label_front.render('Crash', True, colors[actives[3]])
+    crash_text = label_front.render('Crash', True, white)
     screen.blit(crash_text, (30, 330))
-    clap_text = label_front.render('Clap', True, colors[actives[4]])
+    clap_text = label_front.render('Clap', True, white)
     screen.blit(clap_text, (30, 430))
-    floor_text = label_front.render('Floor Tom', True, colors[actives[5]])
+    floor_text = label_front.render('Floor Tom', True, white)
     screen.blit(floor_text, (30, 530))
     for i in range(instruments):
         pygame.draw.line(screen, gray, (0, (i * 100) + 100), (200, (i * 100) + 100), 3)
@@ -114,7 +117,7 @@ run = True
 while run:
     timer.tick(fps)
     screen.fill(black)
-    boxes = draw_grid(clicked,active_beat,active_list)
+    boxes = draw_grid(clicked,active_beat)
     # load menu button
     play_pause = pygame.draw.rect(screen, gray, [50, HEIGHT-150, 200, 100], 0, 5)
     play_text = label_front.render('Play/Pause', True, white)
@@ -223,4 +226,4 @@ pygame.quit()
 
 
 
-# 1:25:33
+# 1:15:33
