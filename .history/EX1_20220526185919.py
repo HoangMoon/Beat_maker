@@ -1,6 +1,5 @@
 
 from math import fabs
-from tkinter.ttk import Widget
 from turtle import Screen, left
 import pygame
 from pygame import MOUSEBUTTONUP, mixer
@@ -44,9 +43,6 @@ saved_beat = []
 file = open('beat_save.txt', 'r')
 for line in file:
     saved_beat.append(line)
-beat_name = ''
-typing = False
-
 # load in sounds
 hi_hat = mixer.Sound('sounds\hi hat.WAV')
 snare = mixer.Sound('sounds\snare.WAV')
@@ -85,7 +81,7 @@ def draw_grid(clicks, beat, actives):
     screen.blit(hi_hat_text, (30, 30))
     snare_text = label_front.render('Snare', True, colors[actives[1]])
     screen.blit(snare_text, (30, 130))
-    floor_text = label_front.render('Bass Drum', True, colors[actives[2]])
+    floor_text = label_front.render('Bass Drum', True, colors[actives[1]])
     screen.blit(floor_text, (30, 230))
     crash_text = label_front.render('Crash', True, colors[actives[3]])
     screen.blit(crash_text, (30, 330))
@@ -122,28 +118,17 @@ def draw_grid(clicks, beat, actives):
         active = pygame.draw.rect(screen, blue, [beat * ((WIDTH - 200) // beats) + 200, 0, ((WIDTH -200) // beats), instruments * 100], 5 ,3 )
     return boxes
 
-def draw_save_menu(beat_name, typing):
-    pygame.draw.rect(screen, black, [0, 0, WIDTH, HEIGHT] )
-    menu_text = label_front.render('Save Menu: Enter a Name for Current Beat!! ', True, white)
-    saving_btn = pygame.draw.rect(screen, gray, [WIDTH // 2 - 150, HEIGHT *0.75, 300, 100], 0, 5)
-    saving_text = label_front.render('Save the Beat', True, white)
-    screen.blit(saving_text, (WIDTH // 2 - 100, HEIGHT * 0.75 + 30))
-    screen.blit(menu_text, (400, 40))
+def draw_save_menu():
+    
+    
+    
+    
     exit_btn = pygame.draw.rect(screen, gray, [WIDTH - 200, HEIGHT - 100, 180, 90], 0, 5)
     exit_text = label_front.render('Close', True, white)
-    screen.blit(exit_text, (WIDTH - 160, HEIGHT - 70)) 
-    entry_rect = pygame.draw.rect(screen, gray, [400, 200, 600, 200], 5, 5)
-    entry_text = label_front.render(f'{beat_name}', True, white)
-    screen.blit(entry_text, (430, 250))
-    return exit_btn, saving_btn, entry_rect
-
-
-def draw_load_menu():
-    pygame.draw.rect(screen, black, [0, 0, WIDTH, HEIGHT] )
-    exit_btn = pygame.draw.rect(screen, gray, [WIDTH - 200, HEIGHT - 100, 180, 90], 0, 5)
-    exit_text = label_front.render('Close', True, white)
-    screen.blit(exit_text, (WIDTH - 160, HEIGHT - 70))  
+    screen.blit(exit_text, (WIDTH - 160, HEIGHT - 70))
     return exit_btn
+
+
 
 
 
@@ -152,7 +137,10 @@ run = True
 while run:
     timer.tick(fps)
     screen.fill(black)
-   
+    if save_menu:
+        exit_button = draw_save_menu()
+    if load_menu:
+        exit_button = draw_load_menu()
     boxes = draw_grid(clicked,active_beat,active_list)
     # load menu button
     play_pause = pygame.draw.rect(screen, gray, [50, HEIGHT-150, 200, 100], 0, 5)
@@ -207,11 +195,6 @@ while run:
     clear_button = pygame.draw.rect(screen, gray, [1150, HEIGHT - 150, 200, 100], 0, 5)
     clear_text = label_front.render('Clear All', True, white)
     screen.blit(clear_text, (1185, HEIGHT - 130))
-    #save/load
-    if save_menu:
-        exit_button, saving_button, entry_reactangle = draw_save_menu(beat_name, typing)
-    if load_menu:
-        exit_button = draw_load_menu()
 
     if beat_changed:
         play_notes()
@@ -255,32 +238,20 @@ while run:
                 clicked = [[-1 for _ in range(beats)] for _ in range(instruments)]
             #save_button
             elif save_button.collidepoint(event.pos):
-                save_menu = True
+                save_button = True
             elif load_button.collidepoint(event.pos):
-                load_menu = True
+                load_button = True
             for i in range(len(instruments_rects)):
                 if instruments_rects[i].collidepoint(event.pos):
                     active_list[i] *= -1
         
-                #all menu
+
         elif event.type == pygame.MOUSEBUTTONUP:
             if exit_button.collidepoint(event.pos):
                 save_menu = False
                 load_menu = False
                 playing = True
-                beat_name = ''
-                typing = False
-                #save beat menu
-            if entry_reactangle.collidepoint(event.pos):
-                if typing:
-                    typing = False
-                elif not typing:
-                    typing: True
-        if event.type == pygame.TEXTINPUT and typing:
-            beat_name += event.text
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_BACKSPACE and lan(beat_name) > 0 and typing:
-                beat_name = beat_name[:-1]
+
 
 
 

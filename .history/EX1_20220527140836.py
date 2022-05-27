@@ -262,7 +262,7 @@ while run:
                 if instruments_rects[i].collidepoint(event.pos):
                     active_list[i] *= -1
         
-                #all menu
+                # all menu
         elif event.type == pygame.MOUSEBUTTONUP:
             if exit_button.collidepoint(event.pos):
                 save_menu = False
@@ -276,11 +276,7 @@ while run:
                     typing = False
                 elif not typing:
                     typing: True
-        if event.type == pygame.TEXTINPUT and typing:
-            beat_name += event.text
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_BACKSPACE and lan(beat_name) > 0 and typing:
-                beat_name = beat_name[:-1]
+
 
 
 

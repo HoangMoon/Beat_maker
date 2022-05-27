@@ -276,11 +276,7 @@ while run:
                     typing = False
                 elif not typing:
                     typing: True
-        if event.type == pygame.TEXTINPUT and typing:
-            beat_name += event.text
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_BACKSPACE and lan(beat_name) > 0 and typing:
-                beat_name = beat_name[:-1]
+
 
 
 
