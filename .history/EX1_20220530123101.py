@@ -2,7 +2,6 @@
 from math import fabs
 from tkinter.ttk import Widget
 from turtle import Screen, left
-from numpy import delete
 import pygame
 from pygame import MOUSEBUTTONUP, mixer
 from pyparsing import White
@@ -141,18 +140,10 @@ def draw_save_menu(beat_name, typing):
 
 def draw_load_menu():
     pygame.draw.rect(screen, black, [0, 0, WIDTH, HEIGHT] )
-    menu_text = label_front.render('Load Menu: Give Me the Beat!! ', True, white)
-    loading_btn = pygame.draw.rect(screen, gray, [WIDTH // 2 - 200, HEIGHT *0.75, 400, 100], 0, 5)
-    loading_text = label_front.render('Load the Beat', True, white)
-    screen.blit(loading_text, (WIDTH // 2 - 70, HEIGHT * 0.75 + 30))
-    delete_btn = pygame.draw.rect(screen, gray, [(WIDTH//2) - 500, HEIGHT * .75, 400, 100], 0, 5)
-    delete_text = label_front.render('Drop Beat', True, white)
-    screen.blit(delete_text, ((WIDTH//2) - 485, HEIGHT * .75 + 10))
-    screen.blit(menu_text, (400, 40))
     exit_btn = pygame.draw.rect(screen, gray, [WIDTH - 200, HEIGHT - 100, 180, 90], 0, 5)
     exit_text = label_front.render('Close', True, white)
     screen.blit(exit_text, (WIDTH - 160, HEIGHT - 70))  
-    return exit_btn, loading_btn, delete_btn
+    return exit_btn
 
 
 
@@ -280,30 +271,18 @@ while run:
                 beat_name = ''
                 typing = False
                 #save beat menu
-            elif entry_reactangle.collidepoint(event.pos):
+            if entry_reactangle.collidepoint(event.pos):
                 if typing:
                     typing = False
                 elif not typing:
                     typing = True
-                    #save beat in to file.txt
-            elif saving_button.collidepoint(event.pos):
-                file = open('beat_save.txt','w')
-                saved_beat.append(f'\nname: {beat_name}, beats: {beats}, bpm: {bpm}, selected: {clicked}')
-                for i in range(len(saved_beat)):
-                    file.write(str(saved_beat[i]))
-                file.close()
-                save_menu = False
-                typing = False
-                beat_name = ''
-
-
-
         if event.type == pygame.TEXTINPUT and typing:
             beat_name += event.text
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_BACKSPACE and len(beat_name) > 0 and typing:
+            if event.key == pygame.K_BACKSPACE and lan(beat_name) > 0 and typing:
                 beat_name = beat_name[:-1]
- 
+
+
 
 
 

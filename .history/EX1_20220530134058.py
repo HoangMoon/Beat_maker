@@ -141,13 +141,13 @@ def draw_save_menu(beat_name, typing):
 
 def draw_load_menu():
     pygame.draw.rect(screen, black, [0, 0, WIDTH, HEIGHT] )
-    menu_text = label_front.render('Load Menu: Give Me the Beat!! ', True, white)
-    loading_btn = pygame.draw.rect(screen, gray, [WIDTH // 2 - 200, HEIGHT *0.75, 400, 100], 0, 5)
+    menu_text = label_front.render('Give Me the Beat!! ', True, white)
+    loading_btn = pygame.draw.rect(screen, gray, [WIDTH // 2 - 200, HEIGHT *0.75, 200, 100], 0, 5)
     loading_text = label_front.render('Load the Beat', True, white)
     screen.blit(loading_text, (WIDTH // 2 - 70, HEIGHT * 0.75 + 30))
     delete_btn = pygame.draw.rect(screen, gray, [(WIDTH//2) - 500, HEIGHT * .75, 400, 100], 0, 5)
     delete_text = label_front.render('Drop Beat', True, white)
-    screen.blit(delete_text, ((WIDTH//2) - 485, HEIGHT * .75 + 10))
+    screen.blit(delete_text, ((WIDTH//2)-485, HEIGHT * .75 + 10))
     screen.blit(menu_text, (400, 40))
     exit_btn = pygame.draw.rect(screen, gray, [WIDTH - 200, HEIGHT - 100, 180, 90], 0, 5)
     exit_text = label_front.render('Close', True, white)
