@@ -133,8 +133,6 @@ def draw_save_menu(beat_name, typing):
     exit_btn = pygame.draw.rect(screen, gray, [WIDTH - 200, HEIGHT - 100, 180, 90], 0, 5)
     exit_text = label_front.render('Close', True, white)
     screen.blit(exit_text, (WIDTH - 160, HEIGHT - 70)) 
-    if typing:
-          pygame.draw.rect(screen, dark_gray, [400, 200, 600, 200], 5, 5)
     entry_rect = pygame.draw.rect(screen, gray, [400, 200, 600, 200], 5, 5)
     entry_text = label_front.render(f'{beat_name}', True, white)
     screen.blit(entry_text, (430, 250))
@@ -143,20 +141,19 @@ def draw_save_menu(beat_name, typing):
 
 def draw_load_menu():
     pygame.draw.rect(screen, black, [0, 0, WIDTH, HEIGHT] )
-    menu_text = label_front.render(' Give Me the Beat!! ', True, white)
-    loading_btn = pygame.draw.rect(screen, gray, [WIDTH // 2 - 150, HEIGHT *0.75, 350, 100], 0, 5)
+    menu_text = label_front.render('Load Menu: Give Me the Beat!! ', True, white)
+    loading_btn = pygame.draw.rect(screen, gray, [WIDTH // 2 - 200, HEIGHT *0.75, 400, 100], 0, 5)
     loading_text = label_front.render('Load the Beat', True, white)
     screen.blit(loading_text, (WIDTH // 2 - 70, HEIGHT * 0.75 + 30))
     delete_btn = pygame.draw.rect(screen, gray, [(WIDTH//2) - 500, HEIGHT * .75, 200, 100], 0, 5)
     delete_text = label_front.render('Drop Beat', True, white)
     screen.blit(delete_text, ((WIDTH//2) - 485, HEIGHT * .75 + 30))
-    screen.blit(menu_text, (570, 40))
+    screen.blit(menu_text, (400, 40))
     exit_btn = pygame.draw.rect(screen, gray, [WIDTH - 200, HEIGHT - 100, 180, 90], 0, 5)
     exit_text = label_front.render('Close', True, white)
     screen.blit(exit_text, (WIDTH - 160, HEIGHT - 70))  
-    loaded_retangle = pygame.draw.rect(screen, gray, [190, 90, 1000, 500], 5, 5)
-
-    return exit_btn, loading_btn, delete_btn, loaded_retangle
+    pygame.draw.rect(screen, gray)
+    return exit_btn, loading_btn, delete_btn
 
 
 
@@ -222,7 +219,7 @@ while run:
     screen.blit(clear_text, (1185, HEIGHT - 130))
     #save/load
     if save_menu:
-        exit_button, saving_button, entry_reactangle, loaded_retangle = draw_save_menu(beat_name, typing)
+        exit_button, saving_button, entry_reactangle = draw_save_menu(beat_name, typing)
     if load_menu:
         exit_button = draw_load_menu()
 
