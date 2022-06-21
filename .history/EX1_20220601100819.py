@@ -154,7 +154,7 @@ def draw_load_menu():
     exit_btn = pygame.draw.rect(screen, gray, [WIDTH - 200, HEIGHT - 100, 180, 90], 0, 5)
     exit_text = label_front.render('Close', True, white)
     screen.blit(exit_text, (WIDTH - 160, HEIGHT - 70))  
-    loaded_rectangle = pygame.draw.rect(screen, gray, [190, 90, 1000, 500], 5, 5)
+    loaded_retangle = pygame.draw.rect(screen, gray, [190, 90, 1000, 500], 5, 5)
 
     return exit_btn, loading_btn, delete_btn, loaded_rectangle
 
@@ -222,7 +222,7 @@ while run:
     screen.blit(clear_text, (1185, HEIGHT - 130))
     #save/load
     if save_menu:
-        exit_button, saving_button, entry_reactangle, loaded_rectangle = draw_save_menu(beat_name, typing)
+        exit_button, saving_button, entry_reactangle, loaded_retangle = draw_save_menu(beat_name, typing)
     if load_menu:
         exit_button = draw_load_menu()
 
@@ -275,7 +275,7 @@ while run:
                 if instruments_rects[i].collidepoint(event.pos):
                     active_list[i] *= -1
         
-            #all menu
+                #all menu
         elif event.type == pygame.MOUSEBUTTONUP:
             if exit_button.collidepoint(event.pos):
                 save_menu = False
@@ -283,13 +283,13 @@ while run:
                 playing = True
                 beat_name = ''
                 typing = False
-            #save beat menu
+                #save beat menu
             elif entry_reactangle.collidepoint(event.pos):
                 if typing:
                     typing = False
                 elif not typing:
                     typing = True
-            #save beat in to file.txt
+                    #save beat in to file.txt
             elif saving_button.collidepoint(event.pos):
                 file = open('beat_save.txt','w')
                 saved_beat.append(f'\nname: {beat_name}, beats: {beats}, bpm: {bpm}, selected: {clicked}')
@@ -299,6 +299,8 @@ while run:
                 save_menu = False
                 typing = False
                 beat_name = ''
+
+
 
         if event.type == pygame.TEXTINPUT and typing:
             beat_name += event.text

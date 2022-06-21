@@ -1,5 +1,6 @@
 
 from math import fabs
+from pickle import FALSE
 from tkinter.ttk import Widget
 from turtle import Screen, left
 from numpy import delete
@@ -288,7 +289,7 @@ while run:
                 if typing:
                     typing = False
                 elif not typing:
-                    typing = True
+                    typing = FALSE
             #save beat in to file.txt
             elif saving_button.collidepoint(event.pos):
                 file = open('beat_save.txt','w')

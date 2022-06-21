@@ -222,7 +222,8 @@ while run:
     screen.blit(clear_text, (1185, HEIGHT - 130))
     #save/load
     if save_menu:
-        exit_button, saving_button, entry_reactangle, loaded_rectangle = draw_save_menu(beat_name, typing)
+      
+        exit_button, saving_button, beat_name, entry_rect = draw_save_menu(beat_name, typing)
     if load_menu:
         exit_button = draw_load_menu()
 
@@ -284,11 +285,11 @@ while run:
                 beat_name = ''
                 typing = False
             #save beat menu
-            elif entry_reactangle.collidepoint(event.pos):
-                if typing:
-                    typing = False
-                elif not typing:
-                    typing = True
+            # elif entry_reactangle.collidepoint(event.pos):
+                # if typing:
+                #     typing = False
+                # elif not typing:
+                #     typing = True
             #save beat in to file.txt
             elif saving_button.collidepoint(event.pos):
                 file = open('beat_save.txt','w')

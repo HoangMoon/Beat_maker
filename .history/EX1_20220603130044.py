@@ -285,10 +285,10 @@ while run:
                 typing = False
             #save beat menu
             elif entry_reactangle.collidepoint(event.pos):
-                if typing:
-                    typing = False
-                elif not typing:
-                    typing = True
+                # if typing:
+                #     typing = False
+                # elif not typing:
+                #     typing = True
             #save beat in to file.txt
             elif saving_button.collidepoint(event.pos):
                 file = open('beat_save.txt','w')

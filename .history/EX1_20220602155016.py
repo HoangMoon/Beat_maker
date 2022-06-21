@@ -275,21 +275,21 @@ while run:
                 if instruments_rects[i].collidepoint(event.pos):
                     active_list[i] *= -1
         
-            #all menu
+                #all menu
         elif event.type == pygame.MOUSEBUTTONUP:
             if exit_button.collidepoint(event.pos):
                 save_menu = False
                 load_menu = False
                 playing = True
-                beat_name = ''
+                beat_name = ' '
                 typing = False
-            #save beat menu
+                #save beat menu
             elif entry_reactangle.collidepoint(event.pos):
                 if typing:
                     typing = False
                 elif not typing:
                     typing = True
-            #save beat in to file.txt
+                    #save beat in to file.txt
             elif saving_button.collidepoint(event.pos):
                 file = open('beat_save.txt','w')
                 saved_beat.append(f'\nname: {beat_name}, beats: {beats}, bpm: {bpm}, selected: {clicked}')
@@ -299,6 +299,8 @@ while run:
                 save_menu = False
                 typing = False
                 beat_name = ''
+
+
 
         if event.type == pygame.TEXTINPUT and typing:
             beat_name += event.text
