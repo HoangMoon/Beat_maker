@@ -277,25 +277,16 @@ while run:
         
             #all menu
         elif event.type == pygame.MOUSEBUTTONUP:
-            if exit_button.collidepoint(event.pos): 
+            if exit_button.collidepoint(event.pos):
                 save_menu = False
                 load_menu = False
                 playing = True
                 beat_name = ''
-            elif entry_reactangle.collidepoint(event.pos):
+            if entry_reactangle.collidepoint(event.pos):
                 if typing:
                     typing = False
                 elif not typing:
                     typing = True
-            elif saving_button.collidepoint(event.pos):
-                file = open('saved_beast.txt','w')
-                saved_beat.append(f'\nname:{beat_name}, beats: {beats}, bpm: {bpm}, selected: {clicked}')
-                for i in range(len(saved_beat)):
-                    file.write(str(saved_beat[i]))
-                file.close()
-                save_menu = False
-                typing = False
-                beat_name = ''
         if event.type == pygame.TEXTINPUT and typing:
             beat_name += event.text     
         if event.type == pygame.KEYDOWN:
