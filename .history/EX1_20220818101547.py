@@ -256,7 +256,7 @@ while run:
     if save_menu:
         exit_button, saving_button, entry_reactangle,  = draw_save_menu(beat_name, typing)
     if load_menu:
-        exit_button, loading_btn, delete_btn,loaded_rectangle, load_info= draw_load_menu(index)
+        exit_button, loading_btn, delete_btn,loaded_rectangle, load_info = draw_load_menu(index)
 
     if beat_changed:
         play_notes()

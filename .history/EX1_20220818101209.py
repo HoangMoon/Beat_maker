@@ -187,7 +187,7 @@ def draw_load_menu(index):
                         loaded_clicks_rows[item] = int(loaded_clicks_rows[item])
                 beat_clicked.append(loaded_clicks_rows)
                 loaded_clicked = beat_clicked
-    load_info = (loaded_beats, loaded_bpm, loaded_clicked)
+    load_info = (loaded_beats, loaded_bpm, loaded_clicked )
     return exit_btn, loading_btn, delete_btn,loaded_rectangle,load_info
 
 
@@ -256,7 +256,7 @@ while run:
     if save_menu:
         exit_button, saving_button, entry_reactangle,  = draw_save_menu(beat_name, typing)
     if load_menu:
-        exit_button, loading_btn, delete_btn,loaded_rectangle, load_info= draw_load_menu(index)
+        exit_button, loading_btn, delete_btn,loaded_rectangle, load_info = draw_load_menu(index)
 
     if beat_changed:
         play_notes()
